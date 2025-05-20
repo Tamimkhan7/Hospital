@@ -1,0 +1,7 @@
+﻿[*.cs]
+
+# CS1998: Async method lacks 'await' operators and will run synchronously
+dotnet_diagnostic.CS1998.severity = none
+
+# CS8603: Possible null reference return.
+dotnet_diagnostic.CS8603.severity = silent

@@ -4,6 +4,6 @@
     {
         internal readonly object ApplicationUser;
 
-        public object Database { get; internal set; }
+        public object Database { get; set; }
     }
 }
