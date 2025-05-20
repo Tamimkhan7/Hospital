@@ -2,6 +2,7 @@
 using Hospital.Models;     
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using ApplicationUser = Hospital.Models.ApplicationUser;
 
 namespace hospitals.Utilities
 {
@@ -23,7 +24,7 @@ namespace hospitals.Utilities
             try
             {
                 // check which migrations are still "pending"
-                if (_context.Database.GetPendingMigrations().Count() > 0)
+                if (_context.Database.GetPendingMigrations().Any())
                 {
                     _context.Database.Migrate(); // apply all pending migrations
                 }
@@ -39,7 +40,16 @@ namespace hospitals.Utilities
                 _roleManager.CreateAsync(new IdentityRole(WebSiteRoles.WebSite_Patient)).GetAwaiter().GetResult();
                 _roleManager.CreateAsync(new IdentityRole(WebSiteRoles.WebSite_Doctor)).GetAwaiter().GetResult();
 
-                _userManager.CreateAsync();
+                _userManager.CreateAsync(new ApplicationUser
+                {
+                    UserName = "Harkesh",
+                    Email = "harkesh@xyz.com"
+                }, "Harkesh@123").GetAwaiter().GetResult();
+
+
+                var Appuser = _context.ApplicationUser.FirstOrDefault(x => x.Email == "harkesh@xyz.com");
+
+                if (Appuser != null) { }
             }
           
         }
