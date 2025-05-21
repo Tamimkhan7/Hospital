@@ -15,7 +15,8 @@ namespace Hospital.Repositories.Implementation
             _context = context;
         }
         private bool disposed = false;
-         public void Dispose()
+        //dispose manually call korle ati cleanup calay
+        public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
@@ -25,17 +26,21 @@ namespace Hospital.Repositories.Implementation
         {
             if (!this.disposed)
             {
+                //if dispose is true then context database connection release 
                 if (disposing)
                 {
                     _context.Dispose();
                 }
             }
             this.disposed = true;
+            //this check if one time is dispose then it will not dispose again
         }
+        //T is either model or class 
         public IGenericRepository<T> GetRepository<T>() where T : class
         {
             return new GenericRepository<T>(_context);
         }
+        //ai repository joto kicu change hoice sob save kora holo ai save ar kaj
         public void save()
         {
             _context.SaveChanges();
