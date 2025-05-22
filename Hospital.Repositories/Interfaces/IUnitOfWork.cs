@@ -8,7 +8,8 @@ namespace Hospital.Repositories.Interfaces
 {
     public interface IUnitOfWork
     {
-        IGenericRepository<T> GenericRepository<T>() where T : class;
+        IGenericRepository<T> GetRepository<T>() where T : class;
         void save();
     }
 }
+

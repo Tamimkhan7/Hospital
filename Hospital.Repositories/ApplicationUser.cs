@@ -1,6 +1,9 @@
-﻿namespace Hospital.Repositories
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace Hospital.Repositories
 {
-    public class ApplicationUser
+    public class ApplicationUser : IdentityUser
     {
+     
     }
 }

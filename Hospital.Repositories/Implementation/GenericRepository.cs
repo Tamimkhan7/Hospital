@@ -15,7 +15,7 @@ namespace Hospital.Repositories.Implementation
         internal DbSet<T> _dbSet;
         public GenericRepository(ApplicationDbContext context)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
             _dbSet = _context.Set<T>();
         }
 
